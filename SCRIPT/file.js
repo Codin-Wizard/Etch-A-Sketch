@@ -1,10 +1,15 @@
 const gridContainer = document.querySelector('#container');
 let rows = document.getElementsByClassName("gridRow");
 let cells = document.getElementsByClassName('cell');
+let numberOfCells
 
 const inputGrid = document.querySelector('#inputGrid');
 inputGrid.addEventListener('click', () => {
-    let numberOfCells = parseFloat(prompt('How many cells do you want?'));
+    numberOfCells = parseFloat(prompt('How many cells do you want?'));
+    if (numberOfCells > 100) {
+        alert('ERROR: The max number of cell is 100');
+    }else {
+    changeCells(); }
 });
 
 
@@ -27,15 +32,20 @@ function makeColumns(cellNum) {
         };
     };
 };
-function defaultGrid() {
-    makeRows(16);
-    makeColumns(16);
-}; 
-defaultGrid();
 
-//Colors in the cells
-for (let j = 0; j < cells.length; j++) {
-    cells[j].addEventListener('mouseover', () =>{
-        cells[j].style.backgroundColor = 'red';
-    });    
+
+function changeCells() {
+    while (gridContainer.firstChild) {
+        gridContainer.removeChild(gridContainer.firstChild);
+    }
+    makeRows(numberOfCells);
+    makeColumns(numberOfCells);
+
+    //Colors in the cells
+    for (let j = 0; j < cells.length; j++) {
+        cells[j].addEventListener('mouseover', () =>{
+            cells[j].style.backgroundColor = 'red';
+        });    
+    };
 };
+
