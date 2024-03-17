@@ -1,6 +1,6 @@
 const gridContainer = document.querySelector('#container');
 let rows = document.getElementsByClassName("gridRow");
-
+let cells = document.getElementsByClassName('cell');
 
 function makeRows(rowNum) {
     //Creates rows
@@ -28,3 +28,8 @@ function defaultGrid() {
 
 defaultGrid();
 
+for (let j = 0; j < cells.length; j++) {
+    cells[j].addEventListener('mouseover', () =>{
+        cells[j].style.backgroundColor = 'red';
+    });    
+};
