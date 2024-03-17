@@ -37,6 +37,7 @@ function makeColumns(cellNum) {
         };
     };
 };
+//Random color picker
 function RGB() {
     const colors = ['red', 'green', 'blue']
     var randomNumber = Math.floor(Math.random() * colors.length); // Generate a random number between 0 and 2
@@ -45,7 +46,7 @@ function RGB() {
 
 function changeCells() {
     while (gridContainer.firstChild) {
-        gridContainer.removeChild(gridContainer.firstChild);
+        gridContainer.removeChild(gridContainer.firstChild);//Removes old cells before adding new ones
     }
     makeRows(numberOfCells);
     makeColumns(numberOfCells);
@@ -53,7 +54,9 @@ function changeCells() {
     //Colors in the cells
     for (let j = 0; j < cells.length; j++) {
         cells[j].addEventListener('mouseover', () =>{
-            cells[j].style.backgroundColor = RGB();
+            if (!cells[j].style.backgroundColor) {
+                cells[j].style.backgroundColor = RGB();
+            } 
         });    
     };
 };
